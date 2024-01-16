@@ -1,10 +1,17 @@
 package inputs;
 
+import main.GamePanel;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyboardInputs implements KeyListener {
 
+    private GamePanel gamePanel;
+    public KeyboardInputs(GamePanel gamePanel) { // Now we have game panel access inside keyboardInputs
+        this.gamePanel = gamePanel;
+    }
+    // Whenever we press w/s/a/d we change some value in game panel class
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -16,16 +23,16 @@ public class KeyboardInputs implements KeyListener {
 
         switch(e.getKeyCode()) {
             case KeyEvent.VK_W:
-                System.out.println("It's W");
+                gamePanel.changeYDelta(-5);
                 break;
             case KeyEvent.VK_A:
-                System.out.println("It's A");
+                gamePanel.changeXDelta(-5);
                 break;
             case KeyEvent.VK_S:
-                System.out.println("It's S");
+                gamePanel.changeYDelta(5);
                 break;
             case KeyEvent.VK_D:
-                System.out.println("It's D");
+                gamePanel.changeXDelta(5);
                 break;
         }
     }
