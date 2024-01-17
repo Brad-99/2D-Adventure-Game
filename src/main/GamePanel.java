@@ -11,18 +11,16 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel {
 
     private MouseInputs mouseInputs;
-    private int xDelta = 0, yDelta = 0;
+    private int xDelta = 100, yDelta = 100;
 
-    public GamePanel() {
-
-        mouseInputs = new MouseInputs();
+    public GamePanel() { // Constructor
         // Adding a new instance of KeyboardInputs as a KeyListener
         // "this" is a reference to the current instance of the class. In this case,
         // it's passed to the KeyboardInputs instance so that it knows which GamePanel it is associated with.
         addKeyListener(new KeyboardInputs(this));
+        mouseInputs = new MouseInputs(this);
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
-
     }
 
     public void changeXDelta(int value) {
@@ -35,10 +33,16 @@ public class GamePanel extends JPanel {
         repaint();
     }
 
-    public void paintComponent(Graphics g) {
+    public void setRectPos(int x, int y) {
+        this.xDelta = x;
+        this.yDelta = y;
+        repaint();
+    }
+
+    public void paintComponent(Graphics g) { // This is what's inside the paint
         super.paintComponent(g);
 
-        g.fillRect(100 + xDelta, 100 + yDelta, 200, 50);
+        g.fillRect(xDelta, yDelta, 200, 50);
     }
 
 }
