@@ -2,12 +2,11 @@ package main;
 
 import inputs.KeyboardInputs;
 import inputs.MouseInputs;
-
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.Random;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 // JPanel is the painting inside the frame
@@ -15,22 +14,32 @@ public class GamePanel extends JPanel {
 
     private MouseInputs mouseInputs;
     private float xDelta = 100, yDelta = 100;
-    private float xDir = 1f, yDir = 1f;
-    private int frames = 0;
-    private long lastCheck = 0;
-    private Color color = new Color(150,20,90);
-    private Random random;
+    private BufferedImage img, subImg;
+
+
 
     public GamePanel() { // Constructor
         // Adding a new instance of KeyboardInputs as a KeyListener
         // "this" is a reference to the current instance of the class. In this case,
         // it's passed to the KeyboardInputs instance so that it knows which GamePanel it is associated with.
-        random = new Random();
         mouseInputs = new MouseInputs(this);
+
+        importImg();
+
         setPanelSize();
         addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
+    }
+
+    private void importImg() {
+        InputStream is = getClass().getResourceAsStream("/player_sprites.png");
+
+        try {
+            img = ImageIO.read(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setPanelSize() {
@@ -59,28 +68,8 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) { // This is what's inside the paint
         super.paintComponent(g);
 
-        updateRectangle();
-        g.setColor(color);
-        g.fillRect((int)xDelta, (int)yDelta, 200, 50);
+        subImg = img.getSubimage(1*64, 8*40, 64, 40);
+        g.drawImage(subImg, (int)xDelta, (int)yDelta, 128, 80, null);
 
-    }
-
-    private void updateRectangle() {
-        xDelta += xDir;
-        if(xDelta > 400 || xDelta < 0) {
-            xDir *= -1;
-            color = getRndColor();
-        }
-        yDelta += yDir;
-        if(yDelta > 400 || yDelta < 0) {
-            yDir *= -1;
-            color = getRndColor();
-        }
-    }
-    private Color getRndColor() {
-        int r = random.nextInt(255);
-        int g = random.nextInt(255);
-        int b = random.nextInt(255);
-        return new Color(r, b, g);
     }
 }
