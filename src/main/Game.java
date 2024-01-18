@@ -10,7 +10,7 @@ public class Game implements Runnable {
 
     // Constructor: Head method of this Game class, any code in here will be run
     //
-    public Game() {
+    public Game() { // Main Thread
         gamePanel = new GamePanel();
         gameWindow = new GameWindow(gamePanel);
         gamePanel.requestFocus();
@@ -18,12 +18,12 @@ public class Game implements Runnable {
    }
 
     private void startGameLoop() {
-        gameThread = new Thread(this);
+        gameThread = new Thread(this); // Create Game Thread, runs concurrently with main thread
         gameThread.start();
     }
 
     @Override
-    public void run() {
+    public void run() { // main routine for the game thread.
 
         double timePerFrame = 1000000000.0 / FPS_SET;
         long lastFrame = System.nanoTime();
