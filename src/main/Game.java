@@ -23,6 +23,10 @@ public class Game implements Runnable {
         gameThread.start();
     }
 
+    public void update() {
+        gamePanel.updateGame();
+    }
+
     @Override
     public void run() { // main routine for the game thread.
 
@@ -49,7 +53,7 @@ public class Game implements Runnable {
             previousTime = currentTime;
 
             if(deltaU >= 1) {
-                //update();
+                update();
                 updates++;
                 deltaU--;
             }
@@ -59,12 +63,6 @@ public class Game implements Runnable {
                 frames++;
                 deltaF--;
             }
-
-//            if (now - lastFrame >= timePerFrame) {
-//                gamePanel.repaint();
-//                lastFrame = now;
-//                frames++;
-//            }
 
             if(System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
