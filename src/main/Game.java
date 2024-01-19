@@ -18,10 +18,11 @@ public class Game implements Runnable {
     // Constructor: Head method of this Game class, any code in here will be run
     //
     public Game() { // Main Thread
+        initClasses();
         gamePanel = new GamePanel(this); // *passing game into gamePanel
         gameWindow = new GameWindow(gamePanel);
         gamePanel.requestFocus();
-        initClasses();
+
 
         startGameLoop();
    }
