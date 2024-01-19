@@ -14,12 +14,14 @@ import static utilz.Constants.Directions.*;
 // JPanel is the painting inside the frame
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
+    private Game game; // *passing game into gamePanel
 
-    public GamePanel() { // Constructor
+    public GamePanel(Game game) { // Constructor // *passing game into gamePanel
         // Adding a new instance of KeyboardInputs as a KeyListener
         // "this" is a reference to the current instance of the class. In this case,
         // it's passed to the KeyboardInputs instance so that it knows which GamePanel it is associated with.
         mouseInputs = new MouseInputs(this);
+        this.game = game;
         setPanelSize();
         addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
