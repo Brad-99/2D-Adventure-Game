@@ -36,16 +36,16 @@ public class KeyboardInputs implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_W:
-                gamePanel.getGame().getPlayer().setUp(True);
+                gamePanel.getGame().getPlayer().setUp(true);
                 break;
             case KeyEvent.VK_A:
-                gamePanel.getGame().getPlayer().setLeft(True);
+                gamePanel.getGame().getPlayer().setLeft(true);
                 break;
             case KeyEvent.VK_S:
-                gamePanel.getGame().getPlayer().setDown(True);
+                gamePanel.getGame().getPlayer().setDown(true);
                 break;
             case KeyEvent.VK_D:
-                gamePanel.getGame().getPlayer().setRight(True);
+                gamePanel.getGame().getPlayer().setRight(true);
                 break;
         }
     }
