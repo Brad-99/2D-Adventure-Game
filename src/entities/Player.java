@@ -40,18 +40,31 @@ public class Player extends Entity {
         if(aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if(aniIndex >= GetSpriteAmount(playerAction))
+            if(aniIndex >= GetSpriteAmount(playerAction)) {
                 aniIndex = 0;
+                attacking = false;
+            }
         }
     }
 
     private void setAnimation() {
+
+        int startAni = playerAction;
+
         if(moving)
             playerAction = RUNNING;
         else
             playerAction = IDLE;
         if(attacking)
             playerAction = ATTACK_1;
+
+        if(startAni != playerAction)
+            resetAniTick();
+    }
+
+    private void resetAniTick() {
+        aniTick=0;
+        aniIndex = 0;
     }
 
     private void updatePos() {
