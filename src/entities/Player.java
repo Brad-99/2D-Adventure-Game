@@ -13,8 +13,8 @@ import static utilz.Constants.PlayerConstants.*;
 public class Player extends Entity {
     private int aniTick, aniIndex, aniSpeed = 15;
     private int playerAction = IDLE;
-    private int playerDir = -1;
     private boolean moving = false;
+    private boolean left, up, right, down;
 
 
 
@@ -36,15 +36,6 @@ public class Player extends Entity {
         g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, 256, 160, null);
     }
 
-    public void setDirection(int direction) {
-        this.playerDir = direction;
-        moving = true;
-    }
-
-    public void setMoving(boolean moving) {
-        this.moving = moving;
-    }
-
     private void updateAnimationTic() {
         aniTick++;
         if(aniTick >= aniSpeed) {
@@ -63,22 +54,7 @@ public class Player extends Entity {
     }
 
     private void updatePos() {
-        if (moving) {
-            switch (playerDir) {
-                case LEFT:
-                    x -= 5;
-                    break;
-                case UP:
-                    y -= 5;
-                    break;
-                case RIGHT:
-                    x += 5;
-                    break;
-                case DOWN:
-                    y += 5;
-                    break;
-            }
-        }
+
     }
 
     private void loadAnimations() {
@@ -100,8 +76,38 @@ public class Player extends Entity {
                 e.printStackTrace();
             }
         }
+    }
 
+    public boolean isUp() {
+        return up;
+    }
 
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
     }
 }
 
