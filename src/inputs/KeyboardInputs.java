@@ -39,7 +39,7 @@ public class KeyboardInputs implements KeyListener {
                 gamePanel.getGame().getPlayer().setUp(True);
                 break;
             case KeyEvent.VK_A:
-                gamePanel.getGame().getPlayer().setLeft(false);
+                gamePanel.getGame().getPlayer().setLeft(True);
                 break;
             case KeyEvent.VK_S:
                 gamePanel.getGame().getPlayer().setDown(false);
