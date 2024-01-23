@@ -2,14 +2,9 @@ package entities;
 
 import utilz.LoadSave;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-import static utilz.Constants.Directions.*;
-import static utilz.Constants.Directions.DOWN;
 import static utilz.Constants.PlayerConstants.*;
 
 public class Player extends Entity {
@@ -22,7 +17,7 @@ public class Player extends Entity {
 
 
     private BufferedImage[][] animations;
-    public Player(float x, float y) {
+    public Player(int x1, int i, float x, float y) {
         super(x, y);
         loadAnimations();
     }
