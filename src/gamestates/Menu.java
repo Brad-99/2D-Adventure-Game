@@ -23,7 +23,7 @@ public class Menu extends State implements Statemethods {
     public void draw(Graphics g) {
 
         g.setColor(Color.black);
-        g.drawString("MENU", Game.GAME_WIDTH / 2, 200);
+        g.drawString("Press Enter To Start", Game.GAME_WIDTH / 2, 200);
     }
 
     @Override
